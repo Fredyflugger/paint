@@ -11,26 +11,25 @@
 <body>
 
     <div class="container">
-        <h1>Temperature conversion</h1>
-        <form name="temperature" action="">
-            <div class="wrap">
-                <input type="text" name="firstTemp" id="box_1" onkeyup="calculate()" onfocus="calculate()" class="temperInput">
-                <select name="temperatures" id="selectOne" onchange="calculate()" class="temperSelect">
-                    <option value="c">Celsius</option>
-                    <option value="f">Fahrenheit</option>
-                    <option value="k">Kelvin</option>
-                </select>
-            </div>
-            <span class="eq">=</span>
-            <div class="wrap">
-                <input type="text" name="secondTemp" id="box_2" onkeyup="calculate()" onfocus="calculate()"  class="temperInput">
-                <select name="temperatures" id="selectTwo" onchange="calculate()" class="temperSelect">
-                    <option value="c" onselect="calculate()">Celsius</option>
-                    <option value="f" onselect="calculate()">Fahrenheit</option>
-                    <option value="k" onselect="calculate()">Kelvin</option>
-                </select>
-            </div>
+        <form>
+            <textarea name="simpleN" id="simp" cols="30" rows="10"></textarea>
         </form>
+            <div class="grid">
+                <div class="gridHeader">Корзина</div>
+                <div class="listing">
+                    <div class="item">Наименование</div>
+                    <div class="price">Цена</div>
+                    <div class="item"><input type="text" id="item1"></div>
+                    <div class="price"><input type="text" id="price1"></div>
+                    <div class="item"><input type="text" id="item2"></div>
+                    <div class="price"><input type="text" id="price2"></div>
+                    <div class="item"><input type="text" id="item3"></div>
+                    <div class="price"><input type="text" id="price3"></div>
+                    <div class="item"><input type="text" id="item4"></div>
+                    <div class="price"><input type="text" id="price4"></div>
+                </div>
+                <div class="gridFooter"> <span>Всего: </span><input type="text" id="value"></div>
+            </div>
     </div>   
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
