@@ -15,11 +15,8 @@ function reRenderSys (obj, elem, action) {
 }
 
 function getCoords (evt) {
-  // let coors = {}
-
   let x = evt.offsetX
   let y = evt.offsetY
-
   doc.querySelector('#xCoord').innerText = x
   doc.querySelector('#yCoord').innerText = y
 }
@@ -64,22 +61,22 @@ canvas.addEventListener('mousedown', (evt) => {
   if (system.currentTool === 'brush') {
     mousePressed = true
     draw(false)
-  } else if (system.currentTool === 'spray') {
+  } else if (system.currentTool === 'erase') {
     mousePressed = true
-    drawSpray(false)
+    erase(false)
+  } else if (system.currentTool === 'spray') {
+    spray()
   }
 })
 
 canvas.addEventListener('mousemove', (evt) => {
   if (system.currentTool === 'brush') {
     if (mousePressed) {
-      console.log(`brush`)
       draw(true)
     }
-  } else if (system.currentTool === 'spray') {
+  } else if (system.currentTool === 'erase') {
     if (mousePressed) {
-      console.log(`spray`)
-      drawSpray(true)
+      erase(true)
     }
   }
 })
@@ -95,8 +92,11 @@ canvas.addEventListener('mouseleave', (evt) => {
 function draw (isDown) {
   if (isDown) {
     ctx.beginPath()
+    ctx.globalAlpha = 1
     ctx.strokeStyle = system.currentColor
     ctx.lineWidth = system.brushSize
+    ctx.shadowBlur = 2
+    ctx.shadowColor = system.currentColor
     ctx.lineJoin = 'round'
     ctx.moveTo(lastX, lastY)
     ctx.lineTo(doc.querySelector('#xCoord').innerText, doc.querySelector('#yCoord').innerText)
@@ -107,10 +107,22 @@ function draw (isDown) {
   lastY = doc.querySelector('#yCoord').innerText
 }
 
-function drawSpray (isDown) {
+function erase (isDown) {
   if (isDown) {
-  // spray()
+    ctx.beginPath()
+    ctx.shadowBlur = 0
+    ctx.shadowColor = '#fff'
+    ctx.strokeStyle = '#fff'
+    ctx.lineWidth = system.brushSize
+    ctx.lineJoin = 'round'
+    ctx.globalAlpha = 1
+    ctx.moveTo(lastX, lastY)
+    ctx.lineTo(doc.querySelector('#xCoord').innerText, doc.querySelector('#yCoord').innerText)
+    ctx.closePath()
+    ctx.stroke()
   }
+  lastX = doc.querySelector('#xCoord').innerText
+  lastY = doc.querySelector('#yCoord').innerText
 }
 
 var clearAll = () => {
