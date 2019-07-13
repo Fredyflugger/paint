@@ -5,6 +5,7 @@ body {
 #canv {
   width: 1000px;
   height: 800px;
+  cursor: crosshair;
 }
 
 .canv {
@@ -49,7 +50,7 @@ body {
   border-radius: 5px 5px 0 0;
 }
 
-#brush, #bin {
+#brush, #bin, #erase, #spray {
   padding: 0;
   width: 30px;
   height: 30px;
@@ -102,3 +103,4 @@ body {
   width: 20px;
   height: 20px;
 }
+
