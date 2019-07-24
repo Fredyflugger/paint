@@ -1,0 +1,9 @@
+.form input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.borderError {
+  border: 1px solid red;
+}
+/*# sourceMappingURL=style.css.map */
