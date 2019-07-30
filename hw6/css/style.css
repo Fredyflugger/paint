@@ -169,7 +169,3 @@ img {
     border: none;
     border-bottom: 2px solid #fafafa;
 }
-
-#searchClose {
-    transform: scale(0.6);
-}
