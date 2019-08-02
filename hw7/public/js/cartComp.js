@@ -27,38 +27,38 @@ let cart = {
   },
   methods: {
     addProduct (product) {
-      let productId = +product.id_product
-      let find = false
-      for (let i = 0; i < this.cart.length; i++) {
-        if (this.cart[i].id_product === product.id_product) {
-          let newItem = this.cart[i]
-          newItem.quantity = newItem.quantity + 1
-          this.cart[i] = newItem
-          find = true
-          break
-        }
-      }
-      if (!find) {
-        let element = {
-          product_name: product.product_name,
-          id_product: productId,
-          price: +product.price,
-          quantity: 1
-        }
-        this.cart.push(element)
+      let find = this.cart.find(el => el.id_product === product.id_product)
+      if (find) {
+        this.$parent.putJSON(`/api/cart/${find.id_product}`, { quantity: 1 })
+          .then(data => {
+            if (data.result) {
+              find.quantity++
+            }
+          })
+      } else {
+        let prod = Object.assign({ quantity: 1 }, product)
+        this.$parent.postJSON('/api/cart', prod)
+          .then(data => {
+            this.cart.push(prod)
+          })
       }
     },
     removeProduct (element) {
-      for (let i = 0; i < this.cart.length; i++) {
-        if ((this.cart[i].id_product === element.id_product) && (element.quantity > 1)) {
-          let newItem = this.cart[i]
-          newItem.quantity = newItem.quantity - 1
-          this.cart[i] = newItem
-          break
-        } else if ((this.cart[i].id_product === element.id_product) && (element.quantity === 1)) {
-          this.cart.splice(i, 1)
-          break
-        }
+      let find = this.cart.find(el => el.id_product === element.id_product)
+      if (find.quantity > 1) {
+        this.$parent.putJSON(`/api/cart/${find.id_product}`, { quantity: -1 })
+          .then(data => {
+            if (data.result) {
+              find.quantity--
+            }
+          })
+      } else {
+        this.$parent.putJSON(`/api/cart/${find.id_product}`, { quantity: -1 })
+          .then(data => {
+            if (data.result) {
+              this.cart.splice(this.cart.indexOf(element), 1)
+            }
+          })
       }
     }
   },
@@ -78,5 +78,11 @@ let cart = {
     document.querySelector('.btn-cart').addEventListener('click', () => {
       document.querySelector('.cart-block').classList.toggle('invisible')
     })
+    this.$parent.getJSON('/api/cart')
+      .then(data => {
+        for (let el of data.contents) {
+          this.cart.push(el)
+        }
+      })
   }
 }
