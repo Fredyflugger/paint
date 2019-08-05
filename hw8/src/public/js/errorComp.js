@@ -18,3 +18,5 @@ let error = {
               </div> 
   `
 }
+
+export default error

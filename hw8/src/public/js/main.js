@@ -1,4 +1,9 @@
-let app = new Vue({
+import cart from './CartComp.js'
+import products from './ProdComp.js'
+import error from './ErrorComp.js'
+import filterEl from './FilterComp.js'
+
+let app = {
   el: '#app',
   methods: {
     getJSON (url) {
@@ -41,7 +46,9 @@ let app = new Vue({
   components: {
     products,
     cart,
-    filtered,
+    filterEl,
     error
   }
-})
+}
+
+export default app

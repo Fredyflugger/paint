@@ -1,0 +1,37 @@
+[
+  {
+    "id_product": 1,
+    "product_name": "Notebook",
+    "price": 2500
+  },
+  {
+    "id_product": 2,
+    "product_name": "Elephant",
+    "price": 45600
+  },
+  {
+    "id_product": 3,
+    "product_name": "Mouse",
+    "price": 500
+  },
+  {
+    "id_product": 4,
+    "product_name": "Phone",
+    "price": 1000
+  },
+  {
+    "id_product": 5,
+    "product_name": "Case",
+    "price": 800
+  },
+  {
+    "id_product": 6,
+    "product_name": "Monitor",
+    "price": 9999
+  },
+  {
+    "id_product": 7,
+    "product_name": "Truck",
+    "price": 999999
+  }
+]

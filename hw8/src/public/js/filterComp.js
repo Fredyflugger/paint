@@ -1,4 +1,4 @@
-let filtered = {
+let filterEl = {
   data () {
     return {
       userSearch: ''
@@ -19,3 +19,5 @@ let filtered = {
                 </form>
   `
 }
+
+export default filterEl
